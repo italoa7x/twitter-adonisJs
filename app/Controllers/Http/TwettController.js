@@ -18,7 +18,7 @@ class TwettController {
    * @param {View} ctx.view
    */
   async index () {
-    const twetts = await Tweet.all()
+    const twetts = await Tweet.query().with('user').fetch()
     return twetts
   }
 
@@ -49,7 +49,7 @@ class TwettController {
    */
   async show ({ params }) {
     const twett = await Tweet.findOrFail(params.id);
-    return tweet
+    return twett
   }
 
   /**
